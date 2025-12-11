@@ -2,77 +2,90 @@
 <html lang="tr">
 <head>
 <meta charset="UTF-8">
-<title>CNC Yazı</title>
+<title>CNC Makinesi</title>
 <style>
     body {
-        background: #0d0d0d;
+        background: #0b0b0b;
         height: 100vh;
+        margin: 0;
         display: flex;
         justify-content: center;
         align-items: center;
-        margin: 0;
     }
 
-    .plate {
-        width: 90%;
-        max-width: 600px;
-        height: 220px;
-        background: #bbb;
+    /* CNC Makinesi Çerçevesi */
+    .cnc-machine {
+        width: 700px;
+        height: 400px;
+        background: #222;
+        border: 8px solid #555;
         border-radius: 10px;
         position: relative;
-        overflow: hidden;
-        box-shadow: 0 0 25px #000;
+        box-shadow: 0 0 20px #000;
     }
 
-    .cnc {
+    /* İç parça (metal blok) */
+    .metal-block {
+        width: 80%;
+        height: 150px;
+        background: linear-gradient(135deg, #d1d1d1, #9c9c9c);
         position: absolute;
-        width: 12px;
-        height: 40px;
-        background: #eee;
-        top: 20px;
-        left: -50px;
-        border-radius: 3px;
-        animation: cncMove 3s linear forwards;
+        bottom: 40px;
+        left: 50%;
+        transform: translateX(-50%);
+        border-radius: 8px;
+        box-shadow: inset 0 0 15px #000;
+    }
+
+    /* CNC Ucu */
+    .cnc-head {
+        width: 18px;
+        height: 60px;
+        background: silver;
+        position: absolute;
+        top: 40px;
+        left: -40px;
+        border-radius: 4px;
+        box-shadow: 0 0 10px white;
+        animation: cncMove 4s linear forwards;
     }
 
     @keyframes cncMove {
-        0% { left: -50px; top: 20px; }
-        25% { left: 120px; top: 50px; }
-        50% { left: 260px; top: 90px; }
-        75% { left: 400px; top: 130px; }
-        100% { left: 550px; top: 170px; }
+        0% { left: -40px; top: 40px; }
+        25% { left: 180px; top: 50px; }
+        50% { left: 350px; top: 80px; }
+        75% { left: 500px; top: 120px; }
+        100% { left: 650px; top: 150px; }
     }
 
-    .text {
+    /* Yazının kazınarak belirmesi */
+    .engrave-text {
         position: absolute;
-        top: 70px;
+        bottom: 80px;
         width: 100%;
         text-align: center;
-        font-size: 45px;
+        font-size: 48px;
         font-weight: bold;
-        font-family: Arial, sans-serif;
-        color: #222;
+        letter-spacing: 3px;
+        color: #1a1a1a;
         opacity: 0;
-        animation: reveal 3s ease forwards;
+        -webkit-text-stroke: 2px #000;
+        animation: engrave 4s linear forwards;
+        animation-delay: 0.2s;
     }
 
-    @keyframes reveal {
-        from {
-            opacity: 0;
-            clip-path: inset(0 100% 0 0);
-        }
-        to {
-            opacity: 1;
-            clip-path: inset(0 0 0 0);
-        }
+    @keyframes engrave {
+        0% { opacity: 0; clip-path: inset(0 100% 0 0); }
+        100% { opacity: 1; clip-path: inset(0 0 0 0); }
     }
 </style>
 </head>
 <body>
 
-<div class="plate">
-    <div class="cnc"></div>
-    <div class="text">Cenk Çayan</div>
+<div class="cnc-machine">
+    <div class="cnc-head"></div>
+    <div class="metal-block"></div>
+    <div class="engrave-text">Cenk Çayan</div>
 </div>
 
 </body>
